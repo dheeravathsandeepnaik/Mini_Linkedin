@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 // API Base URL - Update this for deployment
-<<<<<<< HEAD
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mini-linkedin-backend-7jhs.onrender.com';
-=======
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5175/';
->>>>>>> a2eb312 (recent)
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 const API = axios.create({ baseURL: API_BASE_URL });
 

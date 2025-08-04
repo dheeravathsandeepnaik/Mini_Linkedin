@@ -1,0 +1,33 @@
+services:
+  # Backend API Service
+  - type: web
+    name: mini-linkedin-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mini-linkedin-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: https://mini-linkedin-frontend.onrender.com
+
+  # Frontend Static Site
+  - type: static
+    name: mini-linkedin-frontend
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://mini-linkedin-backend.onrender.com/api
+
+databases:
+  - name: mini-linkedin-db
+    databaseName: mini_linkedin
+    user: admin
